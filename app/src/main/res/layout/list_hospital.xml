@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlPesertaList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<!--    <FrameLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/card_data"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="5dp"-->
+<!--                app:cardCornerRadius="5dp"-->
+<!--                app:cardElevation="3dp">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:padding="5dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_marginStart="10dp">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/containerPeserta"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            >-->
+
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="vertical">-->
+<!--                                <TextView-->
+<!--                                    android:id="@+id/etDivisiListName"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginStart="10dp"-->
+<!--                                    android:fontFamily="@font/montserrat_regular"-->
+<!--                                    android:text="Nama Divisi"-->
+<!--                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+<!--                                    android:textColor="@color/colorBlueWaves"-->
+<!--                                    android:textStyle="bold"-->
+<!--                                    />-->
+<!--                                <TextView-->
+<!--                                    android:id="@+id/etDivisiListUsername"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginStart="10dp"-->
+<!--                                    android:fontFamily="@font/montserrat_regular"-->
+<!--                                    android:text="Username"-->
+<!--                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+<!--                                    android:textColor="@color/colorBlueWaves"-->
+<!--                                    />-->
+<!--                                <LinearLayout-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:orientation="horizontal">-->
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/etDivisiListDesc"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginStart="10dp"-->
+<!--                                        android:fontFamily="@font/roboto_regular"-->
+<!--                                        android:text="Deskripsi"-->
+<!--                                        android:textColor="#000"-->
+<!--                                        />-->
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/etDivisiListID"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginStart="10dp"-->
+<!--                                        android:fontFamily="@font/roboto_regular"-->
+<!--                                        android:visibility="gone"-->
+<!--                                        />-->
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/etDivisiListEntitasID"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginStart="10dp"-->
+<!--                                        android:fontFamily="@font/roboto_regular"-->
+<!--                                        android:visibility="gone"-->
+<!--                                        />-->
+<!--                                </LinearLayout>-->
+
+
+<!--                            </LinearLayout>-->
+
+<!--                            <TextView-->
+<!--                                android:id="@+id/tvKontakMentorKel"-->
+<!--                                android:visibility="gone"-->
+<!--                                android:layout_height="0dp"-->
+<!--                                android:layout_width="0dp"/>-->
+<!--                            <TextView-->
+<!--                                android:id="@+id/tvIdGrupKel"-->
+<!--                                android:visibility="gone"-->
+<!--                                android:layout_height="0dp"-->
+<!--                                android:layout_width="0dp"/>-->
+<!--                            />-->
+<!--                        </LinearLayout>-->
+
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvIdKelompok"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="-114dp"-->
+<!--                            android:layout_toEndOf="@+id/containerNomorWhatsapp"-->
+<!--                            android:fontFamily="@font/montserrat_regular"-->
+<!--                            android:text="ID"-->
+<!--                            android:visibility="gone"-->
+<!--                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+<!--                            android:textColor="@color/colorWhite"-->
+<!--                            android:textSize="14sp" />-->
+
+
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/score1Container"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            >-->
+<!--                        </LinearLayout>-->
+
+
+
+<!--                    </LinearLayout>-->
+
+<!--                </RelativeLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--        </RelativeLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="25dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:layout_gravity="start|center"-->
+<!--            android:layout_marginStart="-8dp"-->
+<!--            android:background="@drawable/ic_circle"-->
+<!--            android:gravity="center">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="25dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:layout_gravity="end|center"-->
+<!--            android:layout_marginEnd="-8dp"-->
+<!--            android:background="@drawable/ic_circle"-->
+<!--            android:gravity="center">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content" />-->
+
+<!--        </LinearLayout>-->
+
+<!--    </FrameLayout>-->
+<!--    <ImageView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginEnd="25dp"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:tint="@color/colorBlueWaves"-->
+<!--        app:srcCompat="@drawable/ic_arrow_right" />-->
+</RelativeLayout>

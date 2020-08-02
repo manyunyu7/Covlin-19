@@ -3,4 +3,27 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <!--    <color name="colorAccent">@color/colorBlueWaves</color>-->
+    //edittext color line
+    <color name="colorBase">#00B0FF</color>
+    <color name="colorWhite">#fff</color>
+    <color name="colorBlueWaves">#0099ff</color>
+    <color name="colorGold">#ffdf00</color>
+    <color name="bootstrapOrange">#f0ad4e</color>
+    <color name="bootstrapBlue">#0275d8</color>
+    <color name="bootstrapRed">#d9534f</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorShadow">#84868B</color>
+    <color name="colorNeoBlue">#1A8DFF</color>
+    <color name="colorPurplish">#F5F6FC</color>
+    <color name="colorGreen">#17B241</color>
+    <color name="colorTextSecondary">#A8B2C8</color>
+    <color name="colorPurple">#7988FC</color>
+    <color name="secondaryText">#959595</color>
+    <color name="xdGreen">#36C12C</color>
+    <color name="xdRed">#FF4848</color>
+    <color name="xdOrange">#FF8748</color>
+    <color name="xdGreenMain">#0D8E53</color>
+
 </resources>
