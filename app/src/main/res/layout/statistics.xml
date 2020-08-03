@@ -4,64 +4,130 @@
     android:id="@+id/lyt_statistics"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:orientation="vertical"
-    android:visibility="visible">
+    android:visibility="gone">
 
     <LinearLayout
+        android:id="@+id/statistics_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:clickable="true"
+        android:orientation="vertical" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.10"
-        android:background="@drawable/xd_cardboard"
+        android:background="@drawable/xd_cardview_half"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/sf_pro_display_light"
+                    android:gravity="center"
+                    android:text="Statistik Kasus"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="30sp" />
+
+                <ImageButton
+                    android:id="@+id/btnCloseStatistic"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_close_window" />
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:fillViewport="true"
+                android:layout_height="match_parent">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-
-                <RelativeLayout
-                    android:id="@+id/relativeLayout2"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Penambahan Kasus"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20dp" />
 
-                    <TextView
-                        android:layout_margin="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="80dp"
-                        android:fontFamily="@font/sf_pro_display_light"
-                        android:gravity="center"
-                        android:text="Statistic"
-                        android:textAlignment="center"
-                        android:textColor="#000"
-                        android:textSize="30sp" />
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/newCaseChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp" />
 
-                    <ImageButton
-                        android:id="@+id/btnCloseStatistic"
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_close_window" />
-                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Kumulatif"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20dp" />
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/chart"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="180dp" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Kelompok Usia Positif"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20dp" />
 
-                <include layout="@layout/layout_loading_transparent"/>
+                <com.anychart.AnyChartView
+                    android:id="@+id/chartPieAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp" />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Gejala Positif"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20dp" />
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chartPieSymtomps"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp" />
+
+
             </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

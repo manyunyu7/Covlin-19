@@ -56,7 +56,9 @@ dependencies {
 
     //CHART AND GRAPHIC
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
+    
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.karumi:dexter:6.2.0' //for easy any permission
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

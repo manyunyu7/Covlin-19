@@ -1,4 +1,4 @@
-package com.senjapagi.covlin19
+package com.senjapagi.covlin19.model
 
 data class ModelProvince(
     var id: Int,

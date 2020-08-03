@@ -1,10 +1,11 @@
-package com.senjapagi.covlin19
+package com.senjapagi.covlin19.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.animation.AnimationUtils.loadAnimation
 import android.webkit.WebView
@@ -15,16 +16,17 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import com.senjapagi.covlin19.R
+import com.senjapagi.covlin19.graphOperation.Statistics
+import com.senjapagi.covlin19.model.ModelProvince
+import com.senjapagi.covlin19.util.URL
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.info.*
+import kotlinx.android.synthetic.main.info_asset.*
 import kotlinx.android.synthetic.main.layout_ai.*
-import kotlinx.android.synthetic.main.layout_ai.btnCloseAI
 import kotlinx.android.synthetic.main.layout_loading_transparent.*
 import kotlinx.android.synthetic.main.statistics.*
 import org.json.JSONObject
-import java.security.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -40,41 +42,94 @@ class MainActivity : AppCompatActivity() {
     var tempIDProv = 0
     var localPointerProv = 0
 
-
-    //entry for chart 1
-    var entries = ArrayList<Entry>()
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataProvince = mutableMapOf()
         indexLocalProvince = mutableMapOf()
         setContentView(R.layout.activity_main)
 
-        lineChart1()
 
+        chartCumulatives()
+
+        Statistics(window.decorView, this).retriveSecondChart()
         btnOpenAI.setOnClickListener {
+            btnOpenInfo.visibility=View.GONE
             lyt_prixa.visibility = View.VISIBLE
-            lyt_prixa.animation = loadAnimation(this, R.anim.item_animation_appear_bottom)
+            lyt_prixa.animation = loadAnimation(this,
+                R.anim.item_animation_appear_bottom
+            )
         }
 
         btnCloseAI.setOnClickListener {
+            btnOpenInfo.visibility=View.VISIBLE
             lyt_prixa.visibility = View.GONE
-            lyt_prixa.animation = loadAnimation(this, R.anim.item_animation_gone_bottom)
+            lyt_prixa.animation = loadAnimation(this,
+                R.anim.item_animation_gone_bottom
+            )
         }
 
-        a3.setOnClickListener {
+        btnEmail.setOnClickListener {
+            val emailIntent = Intent(
+                Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto", "henryaugusta4@gmail.com", null
+                )
+            )
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject")
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Body")
+            startActivity(Intent.createChooser(emailIntent, "Kirim Email ke Henry Augusta"))
+        }
+
+        btnCloseInfo.setOnClickListener {
+            containerShadow.visibility=View.GONE
+            containerShadow.animation= loadAnimation(this,R.anim.item_animation_gone_top)
+            containerDevProfile.animation= loadAnimation(this,R.anim.fade_transition_animation_go)
+            containerDevProfile.visibility=View.GONE
+            containerSupportInfo.animation= loadAnimation(this,R.anim.item_animation_gone_bottom)
+            containerSupportInfo.visibility=View.GONE
+            Handler().postDelayed({
+                lyt_info.visibility=View.GONE
+                btnOpenInfo.visibility=View.VISIBLE
+            },1000)
+
+        }
+
+        btnOpenInfo.setOnClickListener {
+
+            lyt_info.visibility=View.VISIBLE
+
+            containerHeaderInfo.visibility=View.VISIBLE
+            containerHeaderInfo.animation= loadAnimation(this,R.anim.item_animation_appear_top)
+
+            containerShadow.visibility= View.VISIBLE
+
+            containerDevProfile.visibility= View.VISIBLE
+            containerDevProfile.animation= loadAnimation(this,R.anim.fade_transition_animation)
+
+            containerSupportInfo.visibility= View.VISIBLE
+            containerSupportInfo.animation= loadAnimation(this,R.anim.item_animation_appear_bottom)
+
+            btnOpenInfo.visibility=View.GONE
+        }
+
+
+        a3.setOnClickListener { //Open Statistic Layer
+            btnOpenInfo.visibility=View.GONE
+            chart.animateY(3500)
+            chart.animateX(3500)
+            newCaseChart.animateY(3500)
             lyt_statistics.visibility = View.VISIBLE
-            lyt_statistics.animation = loadAnimation(this, R.anim.item_animation_appear_bottom)
+            lyt_statistics.animation = loadAnimation(this,
+                R.anim.item_animation_appear_bottom
+            )
         }
 
-        btnCloseStatistic.setOnClickListener {
+
+        btnCloseStatistic.setOnClickListener {//Close Statistic Layer
             lyt_statistics.visibility = View.GONE
-            lyt_statistics.animation = loadAnimation(this, R.anim.item_animation_gone_bottom)
+            lyt_statistics.animation = loadAnimation(this,
+                R.anim.item_animation_gone_bottom
+            )
         }
 
 
@@ -139,7 +194,7 @@ class MainActivity : AppCompatActivity() {
                 death_new.visibility = View.INVISIBLE
                 in_hospital.text = "Dirawat : -"
                 odp.text = "Total ODP : -"
-                negative.text = "Spesimen Negaif : -"
+                negative.text = "Spesimen Negatif : -"
                 infected.text = provinceCase[localPointerProv].positive.toString()
                 death.text = provinceCase[localPointerProv].death.toString()
                 recovered.text = provinceCase[localPointerProv].healed.toString()
@@ -212,8 +267,8 @@ class MainActivity : AppCompatActivity() {
                         val positive = raz.getJSONObject(i).getInt("kasusPosi")
                         val death = raz.getJSONObject(i).getInt("kasusMeni")
                         val healed = raz.getJSONObject(i).getInt("kasusSemb")
-                        dataProvince.put(nameProvince, kodeProvince)
-                        indexLocalProvince.put(nameProvince, i)
+                        dataProvince[nameProvince] = kodeProvince
+                        indexLocalProvince[nameProvince] = i
                         provinceSpinnerData.add(nameProvince)
                         provinceCase.add(
                             ModelProvince(
@@ -235,35 +290,15 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    fun lineChart1() {
-
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-
-        AndroidNetworking.get(URL.INDONESIA_SUMMARY)
-            .setPriority(Priority.HIGH)
-            .build()
-            .getAsJSONObject(object : JSONObjectRequestListener {
-                @SuppressLint("SetTextI18n")
-                override fun onResponse(response: JSONObject?) {
-                    val raz = response?.getJSONObject("update")?.getJSONArray("harian")
-                    for (i in 0..raz?.length()!!) {
-                        val positif_kum =
-                            raz.getJSONObject(i).getJSONObject("jumlah_positif_kum").getInt("value")
-                        val dateUnix = raz.getJSONObject(i).getString("key_as_string")
-                    }
-
-                }
-
-                override fun onError(anError: ANError?) {
-                    makeToast("Gagal Terhubung dengan Server")
-                }
-
-            })
+    private fun chartCumulatives() {
+        Statistics(window.decorView, this).chartCumulatives()
     }
+
 
     fun makeToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
+
 
     private fun convertUnixTime(epoc: Long): String? {
         try {
